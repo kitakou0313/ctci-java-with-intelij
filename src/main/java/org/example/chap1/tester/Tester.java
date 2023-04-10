@@ -27,8 +27,9 @@ class TesterProb2 {
             String word2 = pair[1];
 
             boolean isAnagram = SovlerProb2.SolverProb2.isPermutation(word1, word2);
+            boolean isAnagramFasterVerRes = SovlerProb2.SolverProb2.isPermutationFaster(word1, word2);
 
-            System.out.println(word1 + ":" + word2 + ":" + isAnagram);
+            System.out.println(word1 + ":" + word2 + ":" + isAnagram + ":" + isAnagramFasterVerRes);
         }
     }
 }
