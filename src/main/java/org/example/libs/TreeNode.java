@@ -38,4 +38,20 @@ public class TreeNode {
     public int getSize() {
         return this.size;
     }
+
+    public boolean isBST() {
+        if (this.left != null) {
+            if (this.val < this.left.val || !(this.left.isBST())) {
+                return false;
+            }
+        }
+
+        if (this.right != null) {
+            if (this.val >= this.right.val || !(this.right.isBST())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
