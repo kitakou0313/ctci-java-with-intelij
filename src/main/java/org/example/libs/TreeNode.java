@@ -54,4 +54,18 @@ public class TreeNode {
 
         return true;
     }
+
+    public TreeNode find(int trgVal) {
+        if (trgVal == this.val) {
+            return this;
+        }
+
+        if (trgVal <= this.val) {
+            return this.left != null ? this.left.find(trgVal) : null;
+        }else {
+            return this.right != null ? this.right.find(trgVal) : null;
+        }
+
+        return null;
+    }
 }
