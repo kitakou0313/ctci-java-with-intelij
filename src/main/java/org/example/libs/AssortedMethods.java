@@ -16,4 +16,30 @@ public class AssortedMethods {
     public static boolean genRandomBooleanWithProbability(int percentageTrue) {
         return genRandomIntBetweenRange(1, 100) <= percentageTrue;
     }
+    
+    public static boolean[][] genRandomBooleanMatrix(int M, int N, int percentageTrue){
+        boolean[][] matrix = new boolean[M][N];
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                matrix[i][j] = this.genRandomBooleanWithProbability(percentageTrue);
+            }
+        }
+
+        return matrix;
+    }
+
+    public static LinkedListNode genLinkedListWithValue(int N, int value) {
+        LinkedListNode root = new LinkedListNode(value, null, null);
+        LinkedListNode prev = root;
+
+        for (int i = 0; i < N - 1; i++) {
+            LinkedListNode next = new LinkedListNode(value, null, null);
+
+            prev.setNext(next);
+
+            prev = next;
+        }
+        return root;
+    }
 }
