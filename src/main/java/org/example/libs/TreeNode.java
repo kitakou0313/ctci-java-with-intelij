@@ -10,6 +10,21 @@ public class TreeNode {
 
     private int size;
 
+    public static TreeNode createMinimalBST(int[] array, int start, int end) {
+        if (end < start) {
+            return null;
+        }
+
+        int mid = (start + end) / 2;
+
+        TreeNode rootNode = new TreeNode(array[mid]);
+
+        rootNode.setLeft(createMinimalBST(array, start, mid - 1));
+        rootNode.setRight(createMinimalBST(array, mid + 1, end));
+
+        return rootNode;
+    }
+
     public TreeNode(int val) {
         this.val = val;
         this.size = 1;
@@ -65,7 +80,5 @@ public class TreeNode {
         }else {
             return this.right != null ? this.right.find(trgVal) : null;
         }
-
-        return null;
     }
 }
