@@ -1,9 +1,13 @@
 package org.example.chap4;
 
+import org.example.chap4.prob1.Solver;
+
 public class Node {
     private Node adjacent[];
     public int adjacentCount;
     private String vertex;
+
+    public Solver.State state;
 
     public Node(String vertex, int adjacentLength) {
         this.vertex = vertex;
@@ -15,7 +19,7 @@ public class Node {
         if (adjacentCount < adjacent.length) {
             this.adjacent[adjacentCount] = x;
             adjacentCount++;
-        }else {
+        } else {
             System.out.println("No more adjacent can ve added");
 
         }
