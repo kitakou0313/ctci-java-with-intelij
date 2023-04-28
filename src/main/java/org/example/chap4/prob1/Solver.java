@@ -9,6 +9,16 @@ public class Solver {
         Unvisited, Visited, Visiting;
     }
 
+    public static void main(String[] args) {
+        Graph g = Solver.createNewGraph();
+        Node[] n = g.getNodes();
+
+        Node start = n[3];
+        Node end = n[5];
+
+        System.out.println(search(g, start, end));
+    }
+
     public static Graph createNewGraph() {
         Graph g = new Graph();
 
