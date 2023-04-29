@@ -1,7 +1,9 @@
 package org.example.chap4.prob3;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
+import org.example.libs.AssortedMethods;
 import org.example.libs.TreeNode;
 
 public class Solver {
@@ -33,5 +35,27 @@ public class Solver {
         }
 
         return res;
+    }
+
+    public static void printResult(ArrayList<LinkedList<TreeNode>> result) {
+        int depth = 0;
+        for (LinkedList<TreeNode> entry :
+                result) {
+            Iterator<TreeNode> i = entry.iterator();
+            System.out.print("Link list at depth :" + depth);
+            while (i.hasNext()) {
+                System.out.print(" " + ((TreeNode) i.next()).getVal());
+                System.out.println();
+                depth++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nodes_flattened = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+//        TreeNode root = AssortedMethods.createLinkedListFromArray(nodes_flattened);
+        TreeNode root = null;
+        ArrayList<LinkedList<TreeNode>> list = createLevelLinkedList(root);
+        printResult(list);
     }
 }
