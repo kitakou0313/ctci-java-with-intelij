@@ -58,6 +58,37 @@ public class Solver {
         return res;
 
     }
+
+    public static HashSet<Integer> convertBitVectorToIntSet(int bitVector, ArrayList<Integer> originalSet) {
+        HashSet<Integer> set = new HashSet<>();
+
+        int index = 0;
+
+        while (bitVector > 0) {
+            if ((bitVector & 1) == 1) {
+                set.add(originalSet.get(index));
+            }
+
+            bitVector >>= 1;
+            index++;
+        }
+
+        return set;
+    }
+
+    public static HashSet<HashSet<Integer>> genPowerSetWithBit(ArrayList<Integer> originalSet) {
+// bit全探索で生成
+        int setSize = originalSet.size();
+        final int MAX = 1 << setSize;
+
+        HashSet<HashSet<Integer>> res = new HashSet<>();
+        for (int bit = 0; bit < MAX; bit++) {
+            res.add(convertBitVectorToIntSet(bit, originalSet));
+
+        }
+
+        return res;
+    }
     public static void main(String[] args) {
 //        {1...i}のべき集合を返す
         for (int i = 1; i <=3 ; i++) {
