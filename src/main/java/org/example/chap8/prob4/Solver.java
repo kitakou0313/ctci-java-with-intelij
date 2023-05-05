@@ -2,6 +2,7 @@ package org.example.chap8.prob4;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Solver {
     public static HashSet<HashSet<Integer>> genPowerSet(ArrayList<Integer> set) {
@@ -74,6 +75,36 @@ public class Solver {
         }
 
         return set;
+    }
+
+    public static HashSet<HashSet<Integer>> genPowerSetWithRecursive(HashSet<Integer> originalSet) {
+        HashSet<HashSet<Integer>> resSet = new HashSet<>();
+
+        if (originalSet.size() == 0) {
+            resSet.add(new HashSet<Integer>());
+            return resSet;
+        }
+
+        HashSet<Integer> originalSetCopy = new HashSet<>(originalSet);
+        int removedElem = 0;
+
+        for (int elem :
+                originalSetCopy) {
+            originalSetCopy.remove(elem);
+            removedElem = elem;
+        }
+
+        HashSet<HashSet<Integer>> powerSetsN_1 = genPowerSetWithRecursive(originalSetCopy);
+        resSet.addAll(powerSetsN_1);
+
+        for (HashSet<Integer> powerSet : powerSetsN_1
+        ) {
+            HashSet<Integer> tmpSet = new HashSet(powerSet);
+            tmpSet.add(removedElem);
+            resSet.add(tmpSet);
+        }
+
+        return resSet;
     }
 
     public static HashSet<HashSet<Integer>> genPowerSetWithBit(ArrayList<Integer> originalSet) {
