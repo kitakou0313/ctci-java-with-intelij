@@ -90,9 +90,10 @@ public class Solver {
 
         for (int elem :
                 originalSetCopy) {
-            originalSetCopy.remove(elem);
             removedElem = elem;
+            break;
         }
+        originalSetCopy.remove(removedElem);
 
         HashSet<HashSet<Integer>> powerSetsN_1 = genPowerSetWithRecursive(originalSetCopy);
         resSet.addAll(powerSetsN_1);
