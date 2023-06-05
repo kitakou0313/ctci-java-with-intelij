@@ -2,6 +2,7 @@ package org.example.chap8.prob11;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Solver {
     public static int countWaysToPayCharge(int charge, ArrayList<Integer> coins) {
@@ -23,10 +24,26 @@ public class Solver {
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> coins = new ArrayList<>(Arrays.asList(1, 5, 10, 25));
+        HashSet<WayToPay<Integer>> set = new HashSet<>();
 
-        int trgCharge = 10;
+        ArrayList<WayToPay<Integer>> listOfWays = new ArrayList<>();
 
-        int numberOfWay = countWaysToPayCharge(trgCharge, coins);
+        WayToPay<Integer> wayToBeAdded = new WayToPay<>(Arrays.asList(5, 6, 7, 8));
+        wayToBeAdded.getCoinToWayMap().put(5, 1);
+        listOfWays.add(wayToBeAdded);
+
+        WayToPay<Integer> way2 = new WayToPay<>(Arrays.asList(5, 6, 7, 8));
+        way2.getCoinToWayMap().put(6, 1);
+        listOfWays.add(way2);
+
+        for (WayToPay<Integer> way :
+                listOfWays) {
+            set.add(way);
+        }
+
+        for (WayToPay<Integer> way :
+                set) {
+            System.out.println(way.getCoinToWayMap());
+        }
     }
 }

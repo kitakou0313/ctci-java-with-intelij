@@ -1,20 +1,21 @@
 package org.example.chap8.prob11;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WayToPay<K> {
-    private HashMap<K, Integer> coinToWayMap;
+    private LinkedHashMap<K, Integer> coinToWayMap;
 
-    public WayToPay(ArrayList<K> coins) {
+    public WayToPay(List<K> coins) {
+        this.coinToWayMap = new LinkedHashMap<>();
         for (K coin : coins
         ) {
             coinToWayMap.put(coin, 0);
         }
     }
 
-    public HashMap<K, Integer> getCoinToWayMap() {
+    public LinkedHashMap<K, Integer> getCoinToWayMap() {
         return coinToWayMap;
     }
 
@@ -29,6 +30,19 @@ public class WayToPay<K> {
         }
 
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        int digit = 1;
+        for (Map.Entry<K, Integer> e : this.getCoinToWayMap().entrySet()
+        ) {
+            hash += digit * e.getValue();
+            digit *= 10;
+        }
+
+        return hash;
     }
 }
 
