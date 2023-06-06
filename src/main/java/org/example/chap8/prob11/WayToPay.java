@@ -15,8 +15,25 @@ public class WayToPay<K> {
         }
     }
 
+    public WayToPay(WayToPay<K> other) {
+        this.coinToWayMap = new LinkedHashMap<K, Integer>();
+
+        for (Map.Entry<K, Integer> e :
+                other.getCoinToWayMap().entrySet()) {
+            this.coinToWayMap.put(e.getKey(), e.getValue());
+        }
+    }
+
     public LinkedHashMap<K, Integer> getCoinToWayMap() {
         return coinToWayMap;
+    }
+
+    public void setCoinNum(K coin, Integer num) {
+        this.coinToWayMap.put(coin, num);
+    }
+
+    public Integer getCoinNum(K coin) {
+        return this.coinToWayMap.get(coin);
     }
 
     @Override
